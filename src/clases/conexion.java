@@ -4,7 +4,7 @@ package clases;
 import java.sql.*;
 
 public class conexion {
-    private String db="usmpizza";
+    private String db="la_favorita_spa";
     private String url="jdbc:mysql://localhost:3306/"+db;
     private String usuario="root";
     private String pass="";
@@ -20,6 +20,7 @@ public class conexion {
             con= DriverManager.getConnection(url,usuario,pass);
             st=con.createStatement();
             msg="Conexion Exitosa";
+            System.out.println(msg);
         }catch (Exception ex){
             msg="Ha ocurrido un error en la conexion: "+ex;
         }

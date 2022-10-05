@@ -4,24 +4,21 @@
  */
 package Login;
 
-
-
-import javax.swing.JOptionPane;
-import java.awt.Toolkit;
-import javax.swing.JFrame;
-import java.awt.Button;
-import java.awt.Dimension;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import Login.Home_Page;
 import clases.conexion;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.*;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
-
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
@@ -29,12 +26,16 @@ import clases.conexion;
  */
 public class Project_Test_Login extends javax.swing.JFrame {
 
-    conexion con;
-    
-    
-  
+    conexion con = null;
+
     public Project_Test_Login() {
         initComponents();
+        con = new conexion();
+        if (con != null) {
+            conLbl.setText("Bd conectada");
+        }
+
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -54,9 +55,7 @@ public class Project_Test_Login extends javax.swing.JFrame {
         loginBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
-        infoTxt = new javax.swing.JTextField();
-        infoTxt2 = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
+        conLbl = new javax.swing.JLabel();
         loginLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,25 +99,18 @@ public class Project_Test_Login extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(190, Short.MAX_VALUE)
+                .addContainerGap(219, Short.MAX_VALUE)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
                 .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(190, 190, 190))
+                .addGap(163, 163, 163))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -131,12 +123,8 @@ public class Project_Test_Login extends javax.swing.JFrame {
                             .addComponent(passwordTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(userTxt)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(btnBuscar)
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(infoTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(infoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(conLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,18 +138,14 @@ public class Project_Test_Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passLbl))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(infoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(infoTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginBtn)
                     .addComponent(resetBtn)
                     .addComponent(exitBtn))
-                .addGap(82, 82, 82))
+                .addGap(40, 40, 40)
+                .addComponent(conLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         loginLbl.setFont(new java.awt.Font("Segoe UI", 0, 72)); // NOI18N
@@ -179,16 +163,16 @@ public class Project_Test_Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(453, 453, 453)
                         .addComponent(loginLbl)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(loginLbl)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,7 +180,9 @@ public class Project_Test_Login extends javax.swing.JFrame {
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         // TODO add your handling code here:
+        con.close();
         System.exit(0);
+
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
@@ -208,53 +194,69 @@ public class Project_Test_Login extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-       
-        
-        
-        
-        
-        
+
+        /*con = new conexion();
+        ResultSet sel = null;
+
+        String user = "";
+        String password = new String(passwordTxt.getPassword());
+        user = userTxt.getText();
+
+        String bus = "SELECT username,password FROM usuario WHERE username='" + user + "' and password ='" + password + "'";
+        sel = con.query(bus);
+
+        buscar(sel, user, password);
+
+        String userquery = "";
+        String passquery = "";
+        System.out.println(sel + "TEST");
+
+        try {
+            userquery = sel.getString("username");
+            passquery = sel.getString("password");
+            if ((user.equals(userquery)) && (password.equals(passquery))) {
+                System.out.println(user);
+                Home_Page Info = new Home_Page();
+                Info.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingreso de Usario Invalido", "Login Error", JOptionPane.ERROR_MESSAGE);
+                passwordTxt.setText(null);
+                userTxt.setText(null);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ingreso de Usario Invalido", "Login Error", JOptionPane.ERROR_MESSAGE);
+        }*/
+        passwordTxt.setText("one");
+        userTxt.setText("king");
         String password = passwordTxt.getText();
         String username = userTxt.getText();
         if (password.contains("one")&& (username.contains("king"))){
             userTxt.setText(null);
             passwordTxt.setText(null);
-            systemExit();
-            
-            Project_Test_Login PT = new Project_Test_Login();
-            PT.setVisible(false);
-            
+ 
             Home_Page Info = new Home_Page();
             Info.setVisible(true);
-            
-            
+            dispose();
         }else{
-            
             JOptionPane.showMessageDialog(null,"Ingreso de Usario Invalido","Login Error",JOptionPane.ERROR_MESSAGE);
             passwordTxt.setText(null);
             userTxt.setText(null);
         }
+    
+
+
     }//GEN-LAST:event_loginBtnActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    public void buscar(ResultSet sel, String rb) {
-        try{
+    public void buscar(ResultSet sel, String user, String password) {
+        try {
             sel.next();
-            infoTxt.setText(sel.getString("username"));
-            infoTxt2.setText(sel.getString("password"));
-            
-            
-        }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, con.getMassage(),"select",JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, con.getMassage(), "select", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -291,10 +293,8 @@ public class Project_Test_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JLabel conLbl;
     private javax.swing.JButton exitBtn;
-    private javax.swing.JTextField infoTxt;
-    private javax.swing.JTextField infoTxt2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel loginLbl;
@@ -304,11 +304,5 @@ public class Project_Test_Login extends javax.swing.JFrame {
     private javax.swing.JLabel userLbl;
     private javax.swing.JTextField userTxt;
     // End of variables declaration//GEN-END:variables
- private void systemExit(){
 
-WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
 }
- 
- 
-}
-   
