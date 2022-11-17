@@ -5,6 +5,8 @@
 package Login;
 
 import clases.conexion;
+import clases.PasswordHashing;
+import static clases.PasswordHashing.doHashing;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +16,7 @@ import java.sql.*;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +27,7 @@ import javax.swing.JPanel;
  *
  * @author Willy
  */
+
 public class Project_Test_Login extends javax.swing.JFrame {
 
     conexion con = null;
@@ -31,11 +35,12 @@ public class Project_Test_Login extends javax.swing.JFrame {
     public Project_Test_Login() {
         initComponents();
         con = new conexion();
-        if (con != null) {
-            conLbl.setText("Bd conectada");
-        }
+        if (con == null) {
+            conLbl.setText("no con");
+        }else{conLbl.setText("Bd conectada");}
 
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -82,6 +87,11 @@ public class Project_Test_Login extends javax.swing.JFrame {
                 loginBtnActionPerformed(evt);
             }
         });
+        loginBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginBtnKeyPressed(evt);
+            }
+        });
 
         resetBtn.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         resetBtn.setText("BORRAR");
@@ -116,8 +126,8 @@ public class Project_Test_Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(227, 227, 227)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passLbl)
-                            .addComponent(userLbl))
+                            .addComponent(userLbl)
+                            .addComponent(passLbl))
                         .addGap(109, 109, 109)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(passwordTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
@@ -125,7 +135,7 @@ public class Project_Test_Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(conLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,65 +198,100 @@ public class Project_Test_Login extends javax.swing.JFrame {
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
         // TODO add your handling code here:
         userTxt.setText(null);
-        passwordTxt.setText(null);
+        /*String passd = passwordTxt.getText();
+        String hashp = doHashing(passd);
+        lblhash.setText(hashp);
+        int le = hashp.length(); 
+        lenghtlbl.setText(String.valueOf(le));     
+        
+      */
+        
+        
     }//GEN-LAST:event_resetBtnActionPerformed
 
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-
-        /*con = new conexion();
-        ResultSet sel = null;
-
-        String user = "";
-        String password = new String(passwordTxt.getPassword());
-        user = userTxt.getText();
-
-        String bus = "SELECT username,password FROM usuario WHERE username='" + user + "' and password ='" + password + "'";
-        sel = con.query(bus);
-
-        buscar(sel, user, password);
-
-        String userquery = "";
-        String passquery = "";
-        System.out.println(sel + "TEST");
-
-        try {
-            userquery = sel.getString("username");
-            passquery = sel.getString("password");
-            if ((user.equals(userquery)) && (password.equals(passquery))) {
-                System.out.println(user);
-                Home_Page Info = new Home_Page();
-                Info.setVisible(true);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingreso de Usario Invalido", "Login Error", JOptionPane.ERROR_MESSAGE);
-                passwordTxt.setText(null);
-                userTxt.setText(null);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ingreso de Usario Invalido", "Login Error", JOptionPane.ERROR_MESSAGE);
-        }*/
-        passwordTxt.setText("one");
-        userTxt.setText("king");
+        
         String password = passwordTxt.getText();
         String username = userTxt.getText();
-        if (password.contains("one")&& (username.contains("king"))){
-            userTxt.setText(null);
-            passwordTxt.setText(null);
+        String hashp = doHashing(password);
+        
+       
  
-            Home_Page Info = new Home_Page();
-            Info.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"Ingreso de Usario Invalido","Login Error",JOptionPane.ERROR_MESSAGE);
-            passwordTxt.setText(null);
-            userTxt.setText(null);
+        ResultSet sel = null;
+        String bus = "SELECT id_vendedor, contraseña FROM vendedor WHERE id_vendedor = '"+username+"' and contraseña = '"+hashp+"'";
+        sel = con.query(bus);
+        
+        try {
+            while (sel.next()) {
+                String bdhashp = sel.getString("contraseña");         
+                 if ((hashp.equals(bdhashp)) && (username.equals(sel.getString("id_vendedor"))   )) {
+                    userTxt.setText(null);
+                    passwordTxt.setText(null);
+ 
+                    Home_Page Info = new Home_Page();
+                    Info.setVisible(true);
+                    dispose();
+                    break;
+               }else if((hashp != bdhashp) || (username != sel.getString("id_vendedor"))){
+                    JOptionPane.showMessageDialog(null,"Ingreso de Usario Invalido","Login Error",JOptionPane.ERROR_MESSAGE);
+                    passwordTxt.setText(null);
+                    userTxt.setText(null);
+                    break;
+              }           
+            }
+        }catch(SQLException ex) {   
+            JOptionPane.showMessageDialog(null, con.getMassage(), "select", JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        
+        
+       
     
 
 
     }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void loginBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginBtnKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+               
+        String password = passwordTxt.getText();
+        String username = userTxt.getText();
+        String hashp = doHashing(password);
+        
+       
+ 
+        ResultSet sel = null;
+        String bus = "SELECT id_vendedor, contraseña FROM vendedor WHERE id_vendedor = '"+username+"' and contraseña = '"+hashp+"'";
+        sel = con.query(bus);
+        
+        try {
+            while (sel.next()) {
+                String bdhashp = sel.getString("contraseña");         
+                 if ((hashp.equals(bdhashp)) && (username.equals(sel.getString("id_vendedor"))   )) {
+                    userTxt.setText(null);
+                    passwordTxt.setText(null);
+ 
+                    Home_Page Info = new Home_Page();
+                    Info.setVisible(true);
+                    dispose();
+                    break;
+               }else if((hashp != bdhashp) || (username != sel.getString("id_vendedor"))){
+                    JOptionPane.showMessageDialog(null,"Ingreso de Usario Invalido","Login Error",JOptionPane.ERROR_MESSAGE);
+                    passwordTxt.setText(null);
+                    userTxt.setText(null);
+                    break;
+              }           
+            }
+        }catch(SQLException ex) {   
+            JOptionPane.showMessageDialog(null, con.getMassage(), "select", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+            
+        }
+    }//GEN-LAST:event_loginBtnKeyPressed
 
     public void buscar(ResultSet sel, String user, String password) {
         try {
