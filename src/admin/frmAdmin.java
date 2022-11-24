@@ -5,10 +5,6 @@
 package admin;
 
 import Login.Project_Test_Login;
-import admin.editBodega.frmAdminBodega;
-import admin.editEmpleados.frmAdminEmpleados;
-import admin.editProveedores.frmAdminProveedores;
-import admin.editVentas.frmAdminVentas;
 import clases.conexion;
 import javax.swing.JOptionPane;
 
@@ -47,7 +43,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
         jPanel1.setForeground(new java.awt.Color(102, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(621, 682));
         jPanel1.setMinimumSize(new java.awt.Dimension(621, 682));

@@ -68,7 +68,7 @@ public class frmBodega extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 204));
 
         lstProducto.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "ERROR. LA INFORMACION NO CARGA, VERIFICAR ESTADO DE LA BASE DE DATOS O DEL CODIGO", " " };

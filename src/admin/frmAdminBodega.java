@@ -1,48 +1,54 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package admin.editBodega;
+
+package admin;
+
+import Entidades.Productos;
+import Modelos.ModelProductos;
+import Entidades.Proveedores;
+import Modelos.ModelProveedores;
 
 import admin.frmAdmin;
+
 import clases.conexion;
 import java.awt.Color;
-
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author kolli
- */
 public class frmAdminBodega extends javax.swing.JFrame {
     conexion con=null;
-    /**
-     * Creates new form frmAdminBodega
-     */
+    DefaultListModel modelstProductos = new DefaultListModel();
+   
     public frmAdminBodega() {
         initComponents();
+        llenarProveedores();
+        llenarProductos();
+        lstProducto.setModel(modelstProductos);
+        
         con= new conexion();
         this.setLocationRelativeTo(null);
         
-        String nom,mar,det;
-        int sto,val,pro;
-        
-        nom ="ejemNom";txtNombre.setText(nom);
-        mar="ejemMar";txtMarca.setText(mar);
-        det="ejemDet";txtDetalle.setText(det);
-        cmbProveedor.setSelectedIndex(1);
-        
-        try{
-            sto=1;
-            txtStock.setText(String.valueOf(sto));
-            val=2;
-            txtValor.setText(String.valueOf(val));
-            pro=Short.parseShort( (String) cmbProveedor.getSelectedItem() );
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error: "+ex,"System Error",JOptionPane.ERROR_MESSAGE);
-        }
     }
-
+    
+    private void llenarProductos(){
+        ModelProductos modProductos = new ModelProductos();
+        ArrayList<Productos> listaProductos =  modProductos.getProductos();
+        modelstProductos.removeAllElements();
+        for (int i = 0; i < listaProductos.size(); i++){
+            modelstProductos.addElement(listaProductos.get(i));
+    }
+    
+    }
+    
+    private void llenarProveedores(){
+        ModelProveedores modProveedor = new ModelProveedores();
+        ArrayList<Proveedores> listaProveedores = modProveedor.getProveedores();
+        cmbProveedor.removeAllItems();
+    
+        for(int i = 0; i < listaProveedores.size(); i ++   ){
+             cmbProveedor.addItem(new Proveedores(listaProveedores.get(i).getId_proveedor(), listaProveedores.get(i).getNom_proveedor()));
+         }
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,17 +82,20 @@ public class frmAdminBodega extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cmbProveedor = new javax.swing.JComboBox<>();
+        txtBuscarProd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(989, 627));
         jPanel1.setMinimumSize(new java.awt.Dimension(989, 627));
 
-        lstProducto.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "ERROR. LA INFORMACION NO CARGA, VERIFICAR ESTADO DE LA BASE DE DATOS O DEL CODIGO", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        lstProducto.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lstProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstProductoMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(lstProducto);
 
@@ -94,6 +103,8 @@ public class frmAdminBodega extends javax.swing.JFrame {
         jLabel1.setText("Administrar Bodega");
 
         txtId.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        txtId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtId.setFocusable(false);
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         lblNombre.setText("NOMBRE:");
@@ -129,6 +140,7 @@ public class frmAdminBodega extends javax.swing.JFrame {
         lblProveedor.setText("PROVEEDOR:");
 
         btnIngresar.setText("Ingresar Nuevo Producto");
+        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
@@ -136,6 +148,7 @@ public class frmAdminBodega extends javax.swing.JFrame {
         });
 
         btnActualizar.setText("Actualizar Producto");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -143,6 +156,7 @@ public class frmAdminBodega extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar Producto");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -150,6 +164,7 @@ public class frmAdminBodega extends javax.swing.JFrame {
         });
 
         btnSalir.setText("Volver");
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -158,7 +173,7 @@ public class frmAdminBodega extends javax.swing.JFrame {
 
         jLabel2.setText("Bienvenido: UserNotFound");
 
-        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/S", "1" }));
+        cmbProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbProveedorActionPerformed(evt);
@@ -207,7 +222,8 @@ public class frmAdminBodega extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
+                            .addComponent(jLabel1)
+                            .addComponent(txtBuscarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addComponent(btnEliminar)
@@ -225,7 +241,9 @@ public class frmAdminBodega extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtBuscarProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -296,6 +314,9 @@ public class frmAdminBodega extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
+        
+        
+        
         int ver;
         boolean verificar=true;//verificar valida si todas los demas campos son correctos, en caso de que no sea asi, este manda un "true" e indica que es incorrecto
 
@@ -480,6 +501,12 @@ public class frmAdminBodega extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void lstProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstProductoMouseClicked
+        // TODO add your handling code here:
+
+        txtId.setText();
+    }//GEN-LAST:event_lstProductoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -520,7 +547,7 @@ public class frmAdminBodega extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cmbProveedor;
+    private javax.swing.JComboBox<Proveedores> cmbProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -533,7 +560,8 @@ public class frmAdminBodega extends javax.swing.JFrame {
     private javax.swing.JLabel lblProveedor;
     private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblValor;
-    private javax.swing.JList<String> lstProducto;
+    private javax.swing.JList<Productos> lstProducto;
+    private javax.swing.JTextField txtBuscarProd;
     private javax.swing.JTextArea txtDetalle;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMarca;
