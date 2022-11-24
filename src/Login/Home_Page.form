@@ -30,38 +30,44 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="780" max="-2" attributes="0"/>
-              <Component id="cancelaropBtn" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jsessionBtn" min="-2" pref="150" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="añadirprodTxt" min="-2" pref="138" max="-2" attributes="0"/>
-                          <Component id="añadirprodBtn" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="idprodLbl" min="-2" pref="132" max="-2" attributes="0"/>
+                              <EmptySpace pref="293" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="LblHash" min="-2" pref="356" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="añadirprodBtn" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnvercarro" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="list1" min="-2" pref="399" max="-2" attributes="0"/>
+                                          <Component id="añadirprodTxt" min="-2" pref="138" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="780" max="-2" attributes="0"/>
+                      <Component id="cancelaropBtn" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jsessionBtn" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,14 +75,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-              <Component id="añadirprodBtn" min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="añadirprodBtn" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="btnvercarro" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Component id="idprodLbl" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="añadirprodTxt" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="LblHash" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="list1" min="-2" pref="384" max="-2" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jsessionBtn" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="cancelaropBtn" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -137,29 +146,57 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="valorLbl" min="-2" pref="198" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                  <Component id="cantidadLbl" min="-2" pref="128" max="-2" attributes="0"/>
-                  <EmptySpace pref="101" max="32767" attributes="0"/>
-                  <Component id="subtotalLbl" min="-2" pref="164" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="codprodLbl" min="-2" pref="198" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nomprodLbl" min="-2" pref="198" max="-2" attributes="0"/>
-                      <Component id="marcaLbl" min="-2" pref="198" max="-2" attributes="0"/>
-                      <Component id="detalleLbl" min="-2" pref="198" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="nomprodLbl" min="-2" pref="198" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="marcaLbl" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                                      <Component id="valorLbl" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="codprodLbl" pref="198" max="32767" attributes="0"/>
+                      <Component id="detalleLbl" pref="198" max="32767" attributes="0"/>
+                      <Component id="cantidadLbl" max="32767" attributes="0"/>
+                      <Component id="subtotalLbl" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -168,34 +205,68 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                          <Component id="nomprodLbl" min="-2" pref="44" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                          <Component id="marcaLbl" min="-2" pref="44" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                          <Component id="detalleLbl" min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="codprodLbl" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="nomprodLbl" alignment="1" min="-2" pref="44" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="marcaLbl" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="detalleLbl" min="-2" pref="44" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                          <Component id="codprodLbl" min="-2" pref="44" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="385" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="160" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="subtotalLbl" min="-2" pref="44" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="valorLbl" min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="cantidadLbl" min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace pref="116" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="valorLbl" alignment="1" min="-2" pref="44" max="-2" attributes="0"/>
+                                      <Component id="cantidadLbl" alignment="1" min="-2" pref="44" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="subtotalLbl" min="-2" pref="44" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -275,17 +346,6 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/kapito.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="FOTO REFERENCIAL"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="codprodLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -298,6 +358,41 @@
             </Property>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="NOMBRE PRODUCTO"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MARCA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CODIGO"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DETALLE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="VALOR UNIDAD"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CANTIDAD"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="SUBTOTAL"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="idprodLbl">
@@ -308,10 +403,18 @@
         <Property name="text" type="java.lang.String" value="ID PRODUCTO:"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Label" name="LblHash">
+    <Component class="javax.swing.JButton" name="btnvercarro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="label1"/>
+        <Property name="text" type="java.lang.String" value="CARRITO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnvercarroActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.List" name="list1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="list1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
